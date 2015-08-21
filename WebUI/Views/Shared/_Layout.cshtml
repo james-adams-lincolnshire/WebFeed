@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width" />
+		<title>Football!</title>
+
+		@Scripts.Render("~/Content/css")
+	</head>
+	<body id="body">
+		@{ Html.RenderPartial("~/Views/Shared/Partials/Header.cshtml"); }
+
+		@RenderBody()
+
+		@{ Html.RenderPartial("~/Views/Shared/Partials/Footer.cshtml"); }
+
+		@Scripts.Render("~/bundles/javascript")
+	</body>
+</html>
+
+@{ Html.RenderPartial("~/Views/Templates/SportsHomeArticle.cshtml"); }
