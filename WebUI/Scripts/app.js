@@ -154,6 +154,7 @@
 		},
 		refresh: function () {
 			document.getElementById('feed').innerHTML = '';
+			document.getElementById('feed').appendChild(app.feed.loadingNode);
 
 			app.feed.load();
 		},
