@@ -220,31 +220,3 @@
 		app.feed.load();
 	});
 })();
-
-//"query": {
-//	"count": 1,
-//	"created": "2015-08-19T19:14:32Z",
-//	"lang": "en-GB",
-//	"results": {
-//		"item": {
-//			"title": "Chelsea agree deal for Barca's Pedro",
-//			"description": "Chelsea agree to sign Barcelona winger Pedro, who had been a Manchester United target, in a deal worth £21m.",
-//			"link": "http://www.bbc.co.uk/sport/0/football/33989090",
-//			"guid": {
-//				"isPermaLink": "false",
-//				"content": "http://www.bbc.co.uk/sport/0/football/33989090"
-//			},
-//			"pubDate": "Wed, 19 Aug 2015 12:05:33 GMT",
-//			"thumbnail": [{
-//				"height": "37",
-//				"url": "http://c.files.bbci.co.uk/C6B2/production/_85066805_pedro.jpg",
-//				"width": "66"
-//			},
-//			{
-//				"height": "81",
-//				"url": "http://c.files.bbci.co.uk/EDC2/production/_85066806_pedro.jpg",
-//				"width": "144"
-//			}]
-//		}
-//	}
-//}
