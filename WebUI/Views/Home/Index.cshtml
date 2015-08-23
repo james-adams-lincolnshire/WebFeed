@@ -1,6 +1,13 @@
-﻿
+﻿@model WebUI.Models.Page
+
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<section id="feed"></section>
+<input type="hidden" id="feed-url" value="@Model.FeedUrl" />
+
+<section id="feed">
+	@{ Html.RenderPartial("~/Views/Home/Partials/Loading.cshtml"); }
+</section>
+
+@{ Html.RenderPartial("~/Views/Templates/ListArticle.cshtml"); }

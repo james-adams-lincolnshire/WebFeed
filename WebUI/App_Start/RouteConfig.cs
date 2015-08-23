@@ -11,8 +11,8 @@ namespace WebUI
 
 			routes.MapRoute(
 				name: "Default",
-				url: "",
-				defaults: new { controller = "Home", action = "Index" }
+				url: "{category}",
+				defaults: new { controller = "Home", action = "Index", category = UrlParameter.Optional }
 			);
 		}
 	}

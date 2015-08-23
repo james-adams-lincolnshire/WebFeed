@@ -1,3 +1,7 @@
-﻿<header>
-	<h1>Welcome To Football!</h1>
+﻿@model WebUI.Models.Base
+
+<header>
+	<a class="category-list-btn" onclick="app.feed.showCategories()"></a>
+	<a class="refresh-page-btn" onclick="app.feed.refresh()"></a>
+	<h1>@Model.Title</h1>
 </header>

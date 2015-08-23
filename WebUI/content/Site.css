@@ -1,24 +1,227 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {
+        body {
+			margin: 0;
+			padding: 0;
+			overflow: -moz-scrollbars-vertical;
+			overflow-y: scroll;
+			font-family: Helvetica, Arial, sans-serif;
+			background-color: #f5f8fa;
+		}
+
+		h1, h2, h3 {
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			z-index: 1;
+			display: block;
+			position: fixed;
+			width: 100%;
+			height: 50px;
+			top: 0px;
+			border-bottom: 1px solid #DEDEDE;
+			text-align: center;
+			background-color: white;
+		}
+
+		header .refresh-page-btn {
+			position: absolute;
+			display: inline-block;
+			height: 25px;
+			width: 25px;
+			margin-left: -36%;
+			top: 12.5px;
+			background-image: url(/Content/Images/refresh-icon.jpg);
+			cursor: pointer;
+		}
+
+		header .category-list-btn {
+			position: absolute;
+			display: inline-block;
+			height: 25px;
+			width: 25px;
+			margin-left: -49%;
+			top: 12.5px;
+			background-image: url(/Content/Images/category-icon.jpg);
+			cursor: pointer;
+		}
+
+		header h1 {
+			line-height: 50px;
+			color: #C9E622;
+			font-size: 17px;
+			letter-spacing: 1px;
+			margin-top: 2px;
+		}
+
+		footer {
+			z-index: 1;
+			display: block;
+			position: relative;
+			max-width: 1281px;
+			height: auto;
+			bottom: -49px;
+			margin: 0 auto;
+			padding-bottom: 10px;
+			text-align: center;
+			font-size: 13px;
+			color: grey;
+			background-color: white;
+			border-left: 1px solid #DEDEDE;
+			border-right: 1px solid #DEDEDE;
+			border-bottom: 1px solid #DEDEDE;
+			border-radius: 3px;
+		}
+
+		footer powered-by {
+			line-height: 20px;
+		}
+
+		#feed {
+			position: relative;
+			max-width: 1281px;
+			top: 65px;
+			margin: 0 auto;
+			padding: 10px;
+			text-align: center;
+			border: 1px solid #DEDEDE;
+			border-bottom: none;
+			background-color: white;
+			border-radius: 8px;
+			border-bottom-left-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+
+			#feed #loading {
+				width: 300px;
+			}
+
+			#feed .list-article {
+				height: auto;
+				width: auto;
+				margin: 15px;
+				text-align: left;
+				border-bottom: 1px solid #DEDEDE;
+			}
+
+			#feed .list-article.no-image {
+				padding-left: 0px;
+			}
+
+				#feed .list-article .image {
+					    display: block;
+						height: 81px;
+						width: 144px;
+						margin: 0 auto;
+						margin-bottom: 15px;
+						border: 2px solid #C9E622;
+				}
+
+				#feed .list-article .title {
+					padding: 0px 0px 10px 0px;
+				}
+
+				#feed .list-article .description {
+					width: 85%;
+					padding: 0px 0px 10px 0px;
+				}
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+	header .refresh-page-btn {
+		margin-left: -41%;
+	}
+
+	header h1 {
+		font-size: 24px;
+		letter-spacing: 2px;
+	}
+
+	#feed .list-article {
+		padding-left: 178px;
+	}
+
+		#feed .list-article .image {
+			float: left;
+			margin-left: -178px;
+		}
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	header h1 {
+		font-size: 2em;
+		letter-spacing: 3px;
+	}
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	header .refresh-page-btn {
+		margin-left: -45%;
+	}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	header .refresh-page-btn {
+		margin-left: -46%;
+	}
+}
+
+/* Special case for refresh */
+@media only screen and (min-width : 1281px) {
+	header .refresh-page-btn {
+		margin-left: -581px;
+	}
+
+	header .category-list-btn {
+		margin-left: -626px;
+	}
+
+	footer .powered-by {
+		margin: 5px 0px 0px 0px;
+	}
+}
+
+/* Special case for footer */
+@media only screen and (min-width : 1870px) {
+	footer {
+		position: fixed;
+		bottom: 0px;
+		padding: 0 10px;
+		text-align: left;
+	}
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+        
 }

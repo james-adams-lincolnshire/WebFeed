@@ -101,14 +101,22 @@
 		}
 	},
 	feed: {
+		loadingNode: document.getElementById('loading').cloneNode(true),
 		load: function () {
-			var feedUrl = 'http://feeds.bbci.co.uk/sport/0/football/rss.xml?edition=uk';
+			var feedUrl = document.getElementById('feed-url').value;
 			var feedCount = 0;
 			var feedIncrement = 10;
 			var feedExhausted = false;
 
 			app.yql.loadFeed(feedUrl, feedCount, feedIncrement, function (jsonData) {
-				app.feed.render.sports.home(jsonData, 'sport-home-article');
+				var currentLoadingNode = document.getElementById('loading');
+
+				if (currentLoadingNode)
+					currentLoadingNode.remove();
+
+				app.feed.render(jsonData, 'list-article');
+
+				document.getElementById('feed').appendChild(app.feed.loadingNode);
 
 				feedCount += feedIncrement;
 
@@ -124,12 +132,19 @@
 						!app.yql.loading) {
 
 						app.yql.loadFeed(feedUrl, feedCount, feedIncrement, function (jsonData) {
+							currentLoadingNode = document.getElementById('loading');
+
 							if (!jsonData.query.results) {
+								currentLoadingNode.remove();
 								feedExhausted = true;
 								return;
 							}
 
-							app.feed.render.sports.home(jsonData, 'sport-home-article');
+							currentLoadingNode.remove();
+
+							app.feed.render(jsonData, 'list-article');
+
+							document.getElementById('feed').appendChild(app.feed.loadingNode);
 
 							feedCount += feedIncrement;
 						});
@@ -142,61 +157,58 @@
 
 			app.feed.load();
 		},
-		render: {
-			sports: {
-				home: function (jsonData, templateId) {
-					var results = app.yql.getFeedResultsFromJson(jsonData);
+		render: function (jsonData, templateId) {
+			var results = app.yql.getFeedResultsFromJson(jsonData);
 
-					if (!results ||
-						!templateId ||
-						templateId.length < 1)
-						return;
+			if (!results ||
+				!templateId ||
+				templateId.length < 1)
+				return;
 
-					var articlesJson = results.length > 1 ? results :
-															[results];
+			var articlesJson = results.length > 1 ? results :
+													[results];
 
-					var feed = document.getElementById('feed');
+			var feed = document.getElementById('feed');
 
-					for (var articleIndex = 0; articleIndex < articlesJson.length; articleIndex++) {
+			for (var articleIndex = 0; articleIndex < articlesJson.length; articleIndex++) {
 
-						var article = articlesJson[articleIndex];
-						var template = document.getElementById(templateId).cloneNode(true);
+				var article = articlesJson[articleIndex];
+				var template = document.getElementById(templateId).cloneNode(true);
+				var imageExists = article.thumbnail &&
+									article.thumbnail.length > 0;
 
-						template.className = template.id;
-						template.id = null;
+				template.className = imageExists ? template.id : template.id + ' no-image';
+				template.id = '';
 
-						for (var templateIndex = 0; templateIndex < template.childNodes.length; templateIndex++) {
+				for (var templateIndex = 0; templateIndex < template.childNodes.length; templateIndex++) {
 
-							var templateNode = template.childNodes[templateIndex];
+					var templateNode = template.childNodes[templateIndex];
 
-							switch (templateNode.id) {
-								case 'title':
-									var titleNode = document.createElement('h3');
-									titleNode.innerHTML = article.title;
-									titleNode.setAttribute('class', 'title');
-									template.replaceChild(titleNode, templateNode)
-									break;
-								case 'description':
-									var descriptionNode = document.createElement('p');
-									descriptionNode.innerHTML = article.description;
-									descriptionNode.setAttribute('class', 'description');
-									template.replaceChild(descriptionNode, templateNode);
-									break;
-								case 'image':
-									if (article.thumbnail &&
-										article.thumbnail.length > 0) {
-										var imageNode = document.createElement('img');
-										imageNode.src = article.thumbnail[article.thumbnail.length - 1].url;
-										imageNode.setAttribute('class', 'image');
-										template.replaceChild(imageNode, templateNode);
-									}
-									break;
+					switch (templateNode.id) {
+						case 'title':
+							var titleNode = document.createElement('h3');
+							titleNode.innerHTML = article.title;
+							titleNode.setAttribute('class', 'title');
+							template.replaceChild(titleNode, templateNode)
+							break;
+						case 'description':
+							var descriptionNode = document.createElement('p');
+							descriptionNode.innerHTML = article.description;
+							descriptionNode.setAttribute('class', 'description');
+							template.replaceChild(descriptionNode, templateNode);
+							break;
+						case 'image':
+							if (imageExists) {
+								var imageNode = document.createElement('img');
+								imageNode.src = article.thumbnail[article.thumbnail.length - 1].url;
+								imageNode.setAttribute('class', 'image');
+								template.replaceChild(imageNode, templateNode);
 							}
-						}
-
-						feed.appendChild(template);
+							break;
 					}
 				}
+
+				feed.appendChild(template);
 			}
 		}
 	}
